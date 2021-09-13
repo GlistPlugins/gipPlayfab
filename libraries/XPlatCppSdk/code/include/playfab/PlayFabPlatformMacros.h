@@ -29,4 +29,5 @@
 // Hence to specify only Windows, we have check for ! _DURANGO.
 #if defined(_WIN32) && !defined(_DURANGO)
 #define PLAYFAB_PLATFORM_WINDOWS
+#define PLAYFAB_WIN7
 #endif //_WIN32

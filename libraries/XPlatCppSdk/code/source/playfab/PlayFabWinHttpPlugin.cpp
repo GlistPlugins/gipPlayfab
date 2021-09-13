@@ -373,7 +373,7 @@ namespace PlayFab
 
     void PlayFabWinHttpPlugin::SetPredefinedHeaders(const CallRequestContainer& requestContainer, HINTERNET hRequest)
     {
-        UNREFERENCED_PARAMETER(requestContainer);
+//        UNREFERENCED_PARAMETER(requestContainer);
 
         HRESULT hr = S_OK;
 
@@ -408,7 +408,7 @@ namespace PlayFab
 
     bool PlayFabWinHttpPlugin::GetBinaryPayload(CallRequestContainer& reqContainer, LPVOID& payload, DWORD& payloadSize) const
     {
-        UNREFERENCED_PARAMETER(reqContainer);
+//        UNREFERENCED_PARAMETER(reqContainer);
         UNREFERENCED_PARAMETER(payload);
         UNREFERENCED_PARAMETER(payloadSize);
         return false;

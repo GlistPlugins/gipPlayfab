@@ -42,9 +42,9 @@ namespace PlayFab
         void* GetCustomData() const;
 
     protected:
-        std::string url;
-        std::unordered_map<std::string, std::string> requestHeaders;
-        std::string requestBody;
+        const std::string url;
+        const std::unordered_map<std::string, std::string> requestHeaders;
+        const std::string requestBody;
         CallRequestContainerCallback callback;
 
         // I never own this, I can never destroy it

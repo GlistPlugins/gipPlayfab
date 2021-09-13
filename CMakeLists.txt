@@ -104,6 +104,8 @@ endif(WIN32)
 if(WIN32)
 	list(APPEND PLUGIN_LINKLIBS
 				#Lib names
+				winhttp
+				ws2_32
 	)
 elseif(LINUX)
 	list(APPEND PLUGIN_LINKLIBS
