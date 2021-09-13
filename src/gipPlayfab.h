@@ -25,13 +25,20 @@ public:
 	gipPlayfab();
 	virtual ~gipPlayfab();
 
-	void login();
+	void registerPlayFabAccount(const std::string& username, const std::string& email, const std::string& password, const std::string& displayName);
+	void login(const std::string& username, const std::string& password);
 
-	static void OnLoginSuccess(const LoginResult& result, void* customData);
-	static void OnLoginFail(const PlayFabError& error, void* customData);
+	void openLobby();
 
 private:
+	static void OnLoginSuccess(const LoginResult& result, void* customData);
+	static void OnLoginFail(const PlayFabError& error, void* customData);
+	static void OnRegisterSuccess(const RegisterPlayFabUserResult& result, void* customData);
+	static void OnRegisterFail(const PlayFabError& error, void* customData);
+
 	static bool finished;
+
+	static const std::string titleID;
 };
 
 #endif /* SRC_GIPPLAYFAB_H_ */
