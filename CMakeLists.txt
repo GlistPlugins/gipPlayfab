@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 3.10.2)
 ##### PLUGIN NAME #####
 set(pluginname gipPlayfab)
 
+add_definitions(-DENABLE_PLAYFABADMIN_API)
 
 ##### PLUGIN PATHS #####
 set(PLUGIN_DIR ${PLUGINS_DIR}/${pluginname})
@@ -98,7 +99,6 @@ elseif(LINUX)
 elseif(APPLE)
 	#Macos libs here
 endif(WIN32)
-
 
 ##### PLUGIN DEPENDENCY LINKING (IF ANY) #####					
 if(WIN32)
