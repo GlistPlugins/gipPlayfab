@@ -9,9 +9,13 @@
 #define SRC_GIPPLAYFAB_H_
 
 #include "gBasePlugin.h"
+
 #include "playfab/PlayFabClientDataModels.h"
 #include "playfab/PlayFabServerDataModels.h"
+
 #include "playfab/PlayFabClientApi.h"
+#include "playfab/PlayFabAdminApi.h"
+
 #include "playfab/PlayFabSettings.h"
 #include "playfab/PlayFabApiSettings.h"
 #include <unistd.h>
@@ -24,18 +28,22 @@ public:
 	gipPlayfab();
 	virtual ~gipPlayfab();
 
-	void setTitleID(const std::string& titleID);
+	void setTitleID(const std::string& titleID, const std::string& secretkey);
 	void registerPlayFabAccount(const std::string& username, const std::string& email, const std::string& password, const std::string& displayName);
 	void login(const std::string& username, const std::string& password);
 
 	void update();
 
 	void openLobby();
+	void addServerBuild();
 
 private:
 	static void OnStartGameSuccess(const StartGameResult& result, void* customData);
 	static void OnLoginSuccess(const LoginResult& result, void* customData);
 	static void OnRegisterSuccess(const RegisterPlayFabUserResult& result, void* customData);
+
+	static void	OnGetPlayerProfileSuccess(const GetPlayerProfileResult& result, void* customData);
+	static void OnAddServerBuildSuccess(const AdminModels::AddServerBuildResult& result, void* customData);
 
 	static void OnRequestFail(const PlayFabError& error, void* customData);
 

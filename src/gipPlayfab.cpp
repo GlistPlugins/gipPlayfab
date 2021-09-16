@@ -13,9 +13,9 @@ gipPlayfab::gipPlayfab() {}
 
 gipPlayfab::~gipPlayfab() {}
 
-void gipPlayfab::setTitleID(const std::string& titleID) {
-	this->titleID = titleID;
+void gipPlayfab::setTitleID(const std::string& titleID, const std::string& secretkey) {
 	PlayFabSettings::staticSettings->titleId = titleID;
+	PlayFabSettings::staticSettings->developerSecretKey = secretkey;
 }
 
 void gipPlayfab::registerPlayFabAccount(const std::string& username, const std::string& email, const std::string& password, const std::string& displayName) {
@@ -59,12 +59,31 @@ void gipPlayfab::openLobby() {
 	PlayFabClientAPI::StartGame(request, OnStartGameSuccess, OnRequestFail, action);
 }
 
+void gipPlayfab::addServerBuild() {
+	AdminModels::AddServerBuildRequest request;
+	request.BuildId = "02111999";
+	request.MaxGamesPerHost = 2;
+	request.MinFreeGameSlots = 10;
+
+	RequestData* action = new RequestData;
+	action->requestname = "AddServerBuild";
+
+	PlayFabAdminAPI::AddServerBuild(request, OnAddServerBuildSuccess, OnRequestFail, action);
+}
+
 void gipPlayfab::OnStartGameSuccess(const StartGameResult& result, void* customData) {
 	gLogi("gipPlayfab") << "Succesfully started a game with the id: " << result.LobbyID;
 }
 
 void gipPlayfab::OnLoginSuccess(const LoginResult& result, void* customData) {
-	gLogi("gipPlayfab") << "Login successful.";
+	GetPlayerProfileRequest request;
+	request.PlayFabId = result.PlayFabId;
+
+	std::string* displayname = new std::string();
+
+	PlayFabClientAPI::GetPlayerProfile(request, OnGetPlayerProfileSuccess, OnRequestFail, displayname);
+
+	gLogi("gipPlayfab") << "Succesfully logged in player " << *displayname;
 	finished = true;
 }
 
@@ -72,11 +91,27 @@ void gipPlayfab::OnRegisterSuccess(const RegisterPlayFabUserResult& result, void
 	gLogi("gipPlayfab") << "Register Success usr: " << result.Username << " id: " << result.PlayFabId;
 }
 
+void gipPlayfab::OnGetPlayerProfileSuccess(const GetPlayerProfileResult& result, void* customData) {
+
+	std::string* playername = (std::string*)customData;
+
+	playername->append(result.PlayerProfile->DisplayName);
+
+	gLogi("profile") << *playername;
+}
+
+void gipPlayfab::OnAddServerBuildSuccess(const AdminModels::AddServerBuildResult& result, void* customData) {
+
+	gLogi("buraya 2");
+	gLogi("Build result") << "build id: " << result.BuildId;
+	gLogi("buraya 3");
+}
+
 void gipPlayfab::OnRequestFail(const PlayFabError& error, void* customData) {
 
 	RequestData* action = (RequestData*)customData;
 
-	gLogi("gipPlayfab") << "Something went wrong with " << action->requestname << std::endl;
+	gLogi("gipPlayfab") << "Something went wrong with the Request: " << action->requestname << std::endl;
 	gLogi("gipPlayfab") << "Here's some debug information:\n";
 	gLogi("gipPlayfab") << error.GenerateErrorReport();
 
