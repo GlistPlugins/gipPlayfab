@@ -48,6 +48,7 @@ public:
 	void canceledMatch();
 
 	void openLobby();
+
 	bool isTicketIdReceived();
 	bool isTicketCanceled();
 	static PlayFab::MultiplayerModels::CreateMatchmakingTicketResult createticketresult;

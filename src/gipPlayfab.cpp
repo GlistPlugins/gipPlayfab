@@ -45,7 +45,6 @@ void gipPlayfab::registerPlayFabAccount(const std::string& username, const std::
 }
 
 void gipPlayfab::login(const std::string& username, const std::string& password) {
-
 	LoginWithPlayFabRequest request;
 	request.Username = username;
 	request.Password = password;
