@@ -33,25 +33,22 @@ using namespace MultiplayerModels;
 using namespace DataModels;
 using namespace AuthenticationModels;
 
-
 class gipPlayfab : public gBasePlugin{
 public:
 	gipPlayfab();
 	virtual ~gipPlayfab();
 
-	//
 	void registerPlayFabAccount(const std::string& username, const std::string& email, const std::string& password, const std::string& displayName);
 	void login(const std::string& username, const std::string& password);
 	void createMatchmakingTicket(const int& giveupafterseconds);
-	PlayFab::MultiplayerModels::GetMatchmakingTicketResult checkMatchmakingTicket(const std::string& ticketid);
-	void joinMatch();
-	void canceledMatch();
-
-	void openLobby();
+	void checkMatchmakingTicket(const std::string& ticketid);
+	void getMatch();
 
 	bool isTicketIdReceived();
-	bool isTicketCanceled();
-	static PlayFab::MultiplayerModels::CreateMatchmakingTicketResult createticketresult;
+	bool isMatchFound();
+	std::string getMatchId();
+	std::string getTicketId();
+	static std::string createdticketid;
 
 private:
 	static void OnLoginSuccess(const LoginResult& result, void* customData);
@@ -64,18 +61,19 @@ private:
 	static void OnCheckMatchmakingFail(const PlayFabError& error, void* customData);
 	static void OnGetMatchResult(const GetMatchResult& result, void* customData);
 	static void OnGetMatchFail(const PlayFabError& error, void* customData);
-	static void OnTicketCanceled(const CancelMatchmakingTicketResult& result, void* customData);
-	static void OnTicketCanceledFail(const PlayFabError& error, void* customData);
 
 	static bool finished;
 	static bool ticketidreceived;
 	static bool ticketcanceled;
+	static bool matchfound;
 	static const std::string titleID;
+	static std::string matchid;
 	static std::string myid;
 	static std::string mytitleid;
 	static std::string myentitytype;
-	static std::string matchid;
 	static std::string myqueuename;
 };
 
 #endif /* SRC_GIPPLAYFAB_H_ */
+
+
