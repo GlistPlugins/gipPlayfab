@@ -81,7 +81,7 @@ void gipPlayfab::createMatchmakingTicket(const int& giveupafterseconds) {
 }
 
 void gipPlayfab::checkMatchmakingTicket(const std::string& ticketid) {
-	 while (true){
+	 while (true) {
 		GetMatchmakingTicketRequest request;
 
 		request.TicketId = ticketid;
@@ -131,7 +131,7 @@ void gipPlayfab::OnCheckMatchmakingTicket(const GetMatchmakingTicketResult& resu
 	   } else {
 		   gLogi("gipPlayfab") << "Not Found";
 	   }
-	}
+}
 
 
 void gipPlayfab::OnCheckMatchmakingFail(const PlayFabError& error, void* customData) {
@@ -145,6 +145,7 @@ void gipPlayfab::OnMatchmakingTicketCreated(const CreateMatchmakingTicketResult&
     createdticketid = result.TicketId;
     ticketidreceived = true;
 }
+
 void gipPlayfab::OnMatchmakingTicketFail(const PlayFabError& error, void* customData) {
     gLoge("gipPlayfab") << "Problem occurred while creating matchmaking ticket.\n";
     gLoge("gipPlayfab") << "Here's some debug information:\n";
