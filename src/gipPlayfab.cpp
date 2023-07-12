@@ -19,14 +19,14 @@ std::string gipPlayfab::createdticketid;
 bool gipPlayfab::ticketidreceived = false;
 bool gipPlayfab::matchfound = false;
 bool gipPlayfab::finished = false;
-const std::string gipPlayfab::titleID = "6AFF4";
+const std::string gipPlayfab::titleID = "F5309";
 
 gipPlayfab::gipPlayfab() {
 	myid = "";
 	mytitleid = "";
 	myentitytype = "";
 	matchid = "";
-	myqueuename = "TestQueue";
+	myqueuename = "Queue1";
 	ticketidreceived = false;
 	matchfound = false;
 	PlayFabSettings::staticSettings->titleId = titleID;
