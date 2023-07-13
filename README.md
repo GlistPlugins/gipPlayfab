@@ -1,7 +1,7 @@
 ﻿
 
 
-**#gipPlayfab**
+# gipPlayfab
 
 [Work in Progress]
 
@@ -9,21 +9,20 @@
 
 **First Setup**
 
-  
 
 Make sure you set the titleID in the gipPlayfab.h file. You can get your title's titleID inside the Playfab Developer Page.
 
   
 
-Register a player using the registerPlayFabAccount method by giving it it's required parameters (username, email, password, display name). Then run the program. If successful a message in the console stating that the account is registered and the player with it's account can be seen and edited in the Player List in the Playfab Developer Page.
+Register a player using the registerPlayFabAccount method by giving it it's required parameters (username, email, password, display name). Then run the program. If successful a message in the console stating that the account is registered and the player with it's account can be seen and edited in the Player List in the Playfab Developer page.
 
   
 
-**IMPORTANT NOTE:** After the first registration, do not re-register the player.
+**IMPORTANT NOTE:** After the first registration, do not register the player again.
 
   
 
-To login simply use the login method and give it's parameters (username, password) and run the program.
+To login use the login method and give it's parameters (username, password) and run the program.
 
 If successful a message in the console stating that the Login is successful and the Session Information.
 
@@ -37,15 +36,11 @@ If successful a message in the console stating that the Login is successful and 
 
   
 
-Set up a new Queue in the Multiplayer section of the Playfab Developer Page then set the myqueuename in the gipPlayfab.h file
-
-  
+Set up a new Queue in the Multiplayer section of the Playfab Developer page then set the myqueuename in the gipPlayfab.h file
 
 Create a matchmaking ticket using the createMatchmakingTicket() method and give it's parameter (giveupafterseconds) a value. Values between 90 - 150 works the best.
 
 If successful in the console a message saying the Matchmaking Ticket has been created and then your Matchmaking Ticket Id will be sent
-
-  
 
 Check the matchmaking ticket to enter a match using the checkMatchmakingTicket() method and it's parameters require you to enter the Matchmaking Ticket Id. To get your Matchmaking Ticket Id use the getTicketId() method for it's parameter.
 
