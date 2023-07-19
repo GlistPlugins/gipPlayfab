@@ -160,7 +160,6 @@ void gipPlayfab::OnCheckMatchmakingTicket(const GetMatchmakingTicketResult& resu
 	   } else if (result.Status == "Canceled") {
 		   gLogi("gipPlayfab") << "Canceled";
 		   createdticketid = "";
-		   exit(0);
 	   } else {
 		   gLogi("gipPlayfab") << "Not Found";
 	   }
