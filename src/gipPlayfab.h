@@ -43,6 +43,9 @@ public:
 	void createMatchmakingTicket(const int& giveupafterseconds);
 	void checkMatchmakingTicket(const std::string& ticketid);
 	void getMatch();
+	std::string GetPlayerData(const std::string& key, const std::string playerId);
+	void SetPlayerData(const std::map<std::string, std::string>& userData);
+	std::string GetTitleData(const std::string& key);
 
 	bool isTicketIdReceived();
 	bool isMatchFound();
@@ -61,6 +64,13 @@ private:
 	static void OnCheckMatchmakingFail(const PlayFabError& error, void* customData);
 	static void OnGetMatchResult(const GetMatchResult& result, void* customData);
 	static void OnGetMatchFail(const PlayFabError& error, void* customData);
+	static void OnSetPlayerDataSuccess(const UpdateUserDataResult& result, void* customData);
+	static void OnSetPlayerDataFail(const PlayFabError& error, void* customData);
+	static void OnPlayerDataReceived(const GetUserDataResult& result, void* customData);
+	static void OnGetPlayerDataFail(const PlayFabError& error, void* customData);
+	static void OnTitleDataReceived(const GetTitleDataResult& result, void* customData);
+	static void OnGetTitleDataFail(const PlayFabError& error, void* customData);
+
 
 	static bool finished;
 	static bool ticketidreceived;
@@ -72,6 +82,9 @@ private:
 	static std::string mytitleid;
 	static std::string myentitytype;
 	static std::string myqueuename;
+	static std::string tempKey;
+	static std::string tempReturnData;
+	static std::string getDataPlayerId;
 };
 
 #endif /* SRC_GIPPLAYFAB_H_ */
